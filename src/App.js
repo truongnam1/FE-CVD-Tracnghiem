@@ -13,7 +13,7 @@ function App() {
   <div style={{ width: 400, margin: '100px auto' }}>
   <DatePicker onChange={handleChange} />
   <div style={{ marginTop: 16 }}>
-    Selected Date: {date ? date.format('YYYY-MM-DD') : 'None'}
+    Selected Date : {date ? date.format('YYYY-MM-DD') : 'None'}
   </div>
 </div>
     
