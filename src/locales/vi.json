@@ -1,0 +1,70 @@
+{
+  "common": {
+    "login": "Đăng nhập",
+    "signUp": "Đăng ký",
+    "home": "Trang chủ",
+    "category": "Chủ đề",
+    "find": "Tìm kiếm",
+    "edit": "Sửa",
+    "delete": "Xóa",
+    "addNew": "Thêm mới",
+    "noData" : "Không có dữ liệu"
+  },
+  "home": {
+    "mainAppName": "TRẮC NGHIỆM ONLINE",
+    "subAppName": " - Kiểm Tra Kiến Thức Hiệu Quả",
+    "appDes": "Hệ thống các câu hỏi trắc nghiệm các lĩnh vực giáo dục",
+    "findTest": "Tìm kiếm đề thi"
+  },
+  "category": {
+    "title": "Các chủ đề trắc nhiệm",
+    "test": "bài thi"
+  },
+  "searchExam": {
+    "filterSearch": "Bộ lọc tìm kiếm",
+    "filterSearchPlaceholder": "Tìm kiếm bằng mã hoặc tên đề thi",
+    "category": "Chủ đề",
+    "showCountExam": "Hiển thị {{from}}-{{to}} của {{total}}",
+    "sortBy": "Sắp xếp theo:",
+    "newMost": "Mới nhất",
+    "oldMost": "Cũ nhất",
+    "countQuestion": "{{count}} câu hỏi",
+    "countExam": "{{count}} lượt thi",
+    "examNow": "Thi ngay"
+  },
+  "question": {
+    "question": "Câu hỏi",
+    "listQuestion": "Danh sách câu hỏi",
+    "status": "Trạng thái",
+    "category": "Chủ đề",
+    "showCount": "Hiển thị {{from}}-{{to}} của {{total}}",
+    "active": "Hoạt động",
+    "inactive": "Không hoạt động",
+    "id": "STT",
+    "code": "Mã câu hỏi",
+    "content": "Nội dung câu hỏi",
+    "group": "Nhóm câu hỏi",
+    "createdAt": "Ngày tạo",
+    "updatedAt": "Ngày cập nhật"
+  },
+  "modalLogin": {
+    "title": "Đăng nhập tài khoản",
+    "username": "Tên tài khoản",
+    "password": "Mật khẩu",
+    "notHaveAccount": "Bạn Chưa có tài khoản?",
+    "forgotPassword": "Quên mật khẩu"
+  },
+  "modalSignUp": {
+    "title": "Đăng ký tài khoản",
+    "fullName": "Họ và tên",
+    "username": "Tên tài khoản",
+    "password": "Mật khẩu",
+    "confirmPassword": "Nhập lại mật khẩu",
+    "hadAccount": "Bạn đã có tài khoản?",
+    "forgotPassword": "Quên mật khẩu"
+  },
+  "validate": {
+    "usernameRequired": "Vui lòng nhập tài khoản",
+    "passwordRequired": "Vui lòng nhập mật khẩu"
+  }
+}

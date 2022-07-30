@@ -1,0 +1,2 @@
+// Login
+export const GET_CUSTOMER_PROFILE = 'GET_CUSTOMER_PROFILE';

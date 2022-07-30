@@ -1,0 +1,235 @@
+.searchExam {
+    margin-top: 20px;
+    .containerExam {
+        width: 100%;
+        display: flex;
+        margin-top: 20px;
+        .select {
+            border: 1px solid #D6D6D6;
+            box-sizing: border-box;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 45px;
+        }
+        .inputFind {
+            border: 1px solid #D6D6D6;
+            box-sizing: border-box;
+            border-radius: 5px;
+            padding: 12px 10px;
+            height: 45px;
+            margin-bottom: 20px;
+        }
+        .filterSearch {
+            padding-right: 10px;
+            position: fixed;
+            width: 25%;
+            z-index: 10;
+            .divFilterSearch {
+                padding: 10px;
+                background-color: white;
+                min-height: calc(100vh - 65px - 20px);
+                border-radius: 5px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                .title {
+                    img {
+                        margin-right: 5px;
+                    }
+                    display: flex;
+                    align-items: center;
+                    margin-bottom: 30px;
+                    font-weight: 400;
+                    font-size: 24px;
+                    line-height: 150%;
+                    letter-spacing: 0.15px;
+                }
+                .btnFind {
+                    margin-top: 30px;
+                    background-color: #ED6C02;
+                    border-color: #ED6C02;
+                    width: 150px;
+                    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px rgba(0, 0, 0, 0.14), 0px 1px 5px rgba(0, 0, 0, 0.12);
+                    border-radius: 5px;
+                    padding: 8px 0;
+                    height: auto;
+                }
+            }
+        }
+        .listExam {
+            .divListExam {
+                padding-left: 10px;
+                min-height: calc(100vh - 65px - 20px);
+                .showAndSort {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    background-color: white;
+                    padding: 10px;
+                    border-radius: 5px;
+                    .showText {
+                        width: 50%;
+                        font-weight: 400;
+                        font-size: 14px;
+                        line-height: 16px;
+                    }
+                    .sortDiv {
+                        display: flex;
+                        width: 50%;
+                        align-items: center;
+                        justify-content: flex-end;
+                        .select {
+                            width: 120px;
+                            margin-left: 5px;
+                        }
+                        .sortText {
+                            font-weight: 400;
+                            font-size: 14px;
+                            line-height: 16px;
+                        }
+                    }
+                }
+                .listExam {
+                    margin-top: 30px;
+                    width: 100%;
+                    .boxExam {
+                        display: flex;
+                        width: 100%;
+                        background-color: white;
+                        padding: 10px;
+                        border-radius: 5px;
+                        margin-bottom: 10px;
+                        .imageExam {
+                            height: 125px;
+                            width: 200px;
+                            margin-right: 10px;
+                            border-radius: 5px;
+                        }
+                        .infoExam {
+                            width: 100%;
+                            .listCategory {
+                                display: flex;
+                                margin-bottom: 10px;
+                                .category {
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    border: 1px solid rgba(25, 118, 210, 0.5);
+                                    border-radius: 4px;
+                                    color: #1976D2;
+                                    font-weight: 500;
+                                    font-size: 14px;
+                                    line-height: 22px;
+                                    letter-spacing: 0.46px;
+                                    text-transform: capitalize;
+                                    padding: 5px;
+                                    margin-right: 10px;
+                                }
+                            }
+                            .nameExam {
+                                font-weight: 500;
+                                font-size: 18px;
+                                line-height: 16px;
+                                letter-spacing: 0.16px;
+                                margin-bottom: 10px;
+                            }
+                            .countInfoExam {
+                                display: flex;
+                                align-items: center;
+                                .countInfo {
+                                    width: 40%;
+                                    display: flex;
+                                    align-items: center;
+                                    img {
+                                        margin-right: 5px;
+                                        height: 24px;
+                                        width: 24px;
+                                    }
+                                }
+                                .btnExam {
+                                    background-color: #ED6C02;
+                                    border-color: #ED6C02;
+                                    width: 150px;
+                                    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px rgba(0, 0, 0, 0.14), 0px 1px 5px rgba(0, 0, 0, 0.12);
+                                    border-radius: 5px;
+                                    padding: 8px 0;
+                                    height: auto;
+                                }
+                            }
+                        }
+                    }
+                }
+                .pagination {
+                    padding: 20px 30px 20px 20px;
+                    display: flex;
+                    justify-content: center;
+                     :global {
+                        .ant-pagination {
+                            display: flex;
+                            justify-content: flex-end;
+                            .ant-pagination-jump-next,
+                            .ant-pagination-jump-prev {
+                                width: 40px;
+                                height: 40px;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                border-radius: 10px !important;
+                                background-color: #f6f6f6 !important;
+                                .ant-pagination-item-link-icon {
+                                    color: gray;
+                                }
+                                .ant-pagination-item-ellipsis {
+                                    margin: 0 0 0 -5px;
+                                }
+                            }
+                            .ant-pagination-item,
+                            .ant-pagination-next,
+                            .ant-pagination-prev {
+                                height: 40px;
+                                width: 40px;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                font-weight: 700;
+                                border-radius: 10px !important;
+                                .ant-pagination-item-link {
+                                    border-radius: 10px !important;
+                                }
+                            }
+                            .ant-pagination-item {
+                                border: 1px solid #d6d6d6;
+                            }
+                            button:not([disabled]) {
+                                border-radius: 10px !important;
+                                color: black;
+                            }
+                            li:hover,
+                            .ant-pagination-item-active {
+                                background-color: #1890FF;
+                                border-color: #1890FF;
+                            }
+                            li a:hover,
+                            .ant-pagination-item-active a,
+                            .ant-pagination-item:hover a {
+                                color: white;
+                            }
+                            button:hover:not([disabled]) {
+                                background-color: #1890FF;
+                                border-color: #1890FF;
+                                color: white !important;
+                                border-radius: 10px !important;
+                            }
+                            .ant-pagination-options {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
