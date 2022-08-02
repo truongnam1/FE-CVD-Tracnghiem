@@ -1,0 +1,128 @@
+{
+  "common": {
+    "login": "Đăng nhập",
+    "signUp": "Đăng ký",
+    "questionManagement": "Quản lý câu hỏi",
+    "examManagement": "Quản lý đề thi",
+    "profile": "Trang cá nhân",
+    "logout": "Đăng xuất",
+    "changePassword": "Đổi mật khẩu",
+    "forgotPassword": "Quên mật khẩu",
+    "check": "Kiểm tra",
+    "home": "Trang chủ",
+    "category": "Chủ đề",
+    "find": "Tìm kiếm",
+    "edit": "Sửa",
+    "delete": "Xóa",
+    "addNew": "Thêm mới",
+    "noData": "Không có dữ liệu",
+    "save": "Lưu"
+  },
+  "home": {
+    "mainAppName": "TRẮC NGHIỆM ONLINE",
+    "subAppName": " - Kiểm Tra Kiến Thức Hiệu Quả",
+    "appDes": "Hệ thống các câu hỏi trắc nghiệm các lĩnh vực giáo dục",
+    "findTest": "Tìm kiếm đề thi"
+  },
+  "category": {
+    "title": "Các chủ đề trắc nhiệm",
+    "test": "bài thi"
+  },
+  "page404": {
+    "title": "URL không tồn tại.",
+    "backToHome": "Trở về trang chủ"
+  },
+  "searchExam": {
+    "filterSearch": "Bộ lọc tìm kiếm",
+    "filterSearchPlaceholder": "Tìm kiếm bằng mã hoặc tên đề thi",
+    "category": "Chủ đề",
+    "showCountExam": "Hiển thị {{from}}-{{to}} của {{total}}",
+    "sortBy": "Sắp xếp theo:",
+    "newMost": "Mới nhất",
+    "oldMost": "Cũ nhất",
+    "countQuestion": "{{count}} câu hỏi",
+    "countExam": "{{count}} lượt thi",
+    "examNow": "Thi ngay"
+  },
+  "myQuestion": {
+    "question": "Câu hỏi",
+    "listQuestion": "Danh sách câu hỏi",
+    "status": "Trạng thái",
+    "category": "Chủ đề",
+    "showCount": "Hiển thị {{from}}-{{to}} của {{total}}",
+    "active": "Hoạt động",
+    "inactive": "Không hoạt động",
+    "id": "STT",
+    "code": "Mã câu hỏi",
+    "content": "Nội dung câu hỏi",
+    "group": "Nhóm câu hỏi",
+    "createdAt": "Ngày tạo",
+    "updatedAt": "Ngày cập nhật"
+  },
+  "myListExam": {
+    "exam": "Đề thi",
+    "listExam": "Danh sách đề thi",
+    "status": "Trạng thái",
+    "category": "Chủ đề",
+    "showCount": "Hiển thị {{from}}-{{to}} của {{total}}",
+    "active": "Hoạt động",
+    "inactive": "Không hoạt động",
+    "id": "STT",
+    "code": "Mã câu hỏi",
+    "content": "Nội dung câu hỏi",
+    "group": "Nhóm câu hỏi",
+    "createdAt": "Ngày tạo",
+    "updatedAt": "Ngày cập nhật"
+  },
+  "questionForm": {
+    "addQuestion": "Thêm mới câu hỏi",
+    "typeQuestion": "Loại câu hỏi",
+    "groupQuestion": "Nhóm câu hỏi",
+    "grade": "Lớp",
+    "category": "Chủ đề",
+    "content": "Nội dung câu hỏi",
+    "hereQuestionContent": "Đây là nội dung câu hỏi",
+    "option": "Phương án {{number}}",
+    "addOption": "Thêm phương án",
+    "typePickOne": "Chọn phương án đúng nhất",
+    "typeMultiPick": "Chọn nhiều phương án",
+    "typeFill": "Điền phương án tự luận"
+  },
+  "modalLogin": {
+    "title": "Đăng nhập tài khoản",
+    "username": "Tên tài khoản",
+    "password": "Mật khẩu",
+    "notHaveAccount": "Bạn Chưa có tài khoản?",
+    "forgotPassword": "Quên mật khẩu"
+  },
+  "modalSignUp": {
+    "title": "Đăng ký tài khoản",
+    "fullName": "Họ và tên",
+    "username": "Tên tài khoản",
+    "password": "Mật khẩu",
+    "confirmPassword": "Nhập lại mật khẩu",
+    "hadAccount": "Bạn đã có tài khoản?",
+    "forgotPassword": "Quên mật khẩu",
+    "email": "Email",
+    "validate": {
+      "confirmPasswordInvalid": "Nhập lại mật khẩu không đúng."
+    }
+  },
+  "modalChangePassword": {
+    "title": "Đổi mật khẩu mới",
+    "oldPassword": "Mật khẩu hiện tại",
+    "newPassword": "Mật khẩu mới",
+    "confirmPassword": "Nhập lại mật khẩu mới",
+    "validate": {
+      "confirmPasswordInvalid": "Nhập lại mật khẩu không đúng."
+    }
+  },
+  "modalForgotPassword": {
+    "title": "Quên mật khẩu",
+    "email": "Email hiện tại"
+  },
+  "validate": {
+    "usernameRequired": "Vui lòng nhập tài khoản",
+    "passwordRequired": "Vui lòng nhập mật khẩu"
+  }
+}

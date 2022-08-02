@@ -1,0 +1,95 @@
+.mainForm {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    .groupForm {
+        width: 100%;
+        .formSelect {
+            width: 100%;
+            .form,
+            .form2 {
+                display: block;
+                width: 50% !important;
+            }
+            .form {
+                padding-right: 5px;
+            }
+            .form2 {
+                padding-left: 5px;
+            }
+        }
+        .form,
+        .form2 {
+            display: block;
+            width: 100%;
+        }
+        .input {
+            border: 1px solid #D6D6D6;
+            box-sizing: border-box;
+            border-radius: 5px;
+            padding: 12px 10px;
+            height: 45px;
+        }
+        .select {
+            border: 1px solid #D6D6D6;
+            box-sizing: border-box;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 45px;
+        }
+        .formListOption {
+            flex-direction: column;
+            .formOption {
+                display: flex;
+                align-items: center;
+                .formCheck {
+                    display: flex;
+                    align-items: center;
+                     :global(.ant-form-item-control-input-content) {
+                        display: flex;
+                        align-items: center;
+                    }
+                    margin-bottom: 48px;
+                    input {
+                        height: 20px;
+                        width: 20px;
+                    }
+                }
+                .formInput {
+                     :global(.ant-form-item-control-input-content) {
+                        display: flex;
+                    }
+                }
+                img {
+                    margin-top: 12px;
+                    margin-left: 10px;
+                }
+            }
+            .btnAddOption {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                padding: 12px 8px;
+                gap: 4px;
+                box-shadow: inset 0px -1px 0px #E1E3E5;
+                border: none;
+                font-style: italic;
+                font-weight: 400;
+                font-size: 14px;
+            }
+        }
+        .btnSubmit {
+            background-color: #0F62FE;
+            border-color: #0F62FE;
+            width: 100%;
+            box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px rgba(0, 0, 0, 0.14), 0px 1px 5px rgba(0, 0, 0, 0.12);
+            border-radius: 5px;
+            padding: 8px 0;
+            height: auto;
+        }
+    }
+}
