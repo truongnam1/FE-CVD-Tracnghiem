@@ -9,10 +9,11 @@ import { handleErrorMessage } from 'helper';
 
 interface LoginProps {
   handleShowSignUp: () => void;
+  handleShowForgotPassword: () => void;
 }
 
 export default function Login(props: LoginProps) {
-  const { handleShowSignUp } = props;
+  const { handleShowSignUp, handleShowForgotPassword } = props;
   const { t } = useTranslation();
 
   const handleSubmit = async (payload: any) => {
@@ -55,7 +56,9 @@ export default function Login(props: LoginProps) {
           </span>
         </div>
         <div className={styles.forgotPassword}>
-          <span className={styles.showPopup}>{t('modalLogin.forgotPassword')}</span>
+          <span className={styles.showPopup} onClick={handleShowForgotPassword}>
+            {t('modalLogin.forgotPassword')}
+          </span>
         </div>
       </Row>
     </Form>

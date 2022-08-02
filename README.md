@@ -1,4 +1,3 @@
-
 ## Getting Started
 
 Install dependencies,
@@ -22,4 +21,5 @@ $ yarn build
 ```
 
 ## API BE
-https://tracnghiemonline-be.herokuapp.com/rpc/tracnghiem/swagger/index.htm
+
+https://tracnghiemonline-be.herokuapp.com/rpc/tracnghiem/swagger/index.html

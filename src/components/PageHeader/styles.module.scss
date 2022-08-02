@@ -1,132 +1,129 @@
 .headerWrapper {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height: 65px;
-    box-shadow: inset 0px -0.5px 0px #d6d6d6;
-    padding: 0 10px;
-    color: #fff;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 65px;
+  box-shadow: inset 0px -0.5px 0px #d6d6d6;
+  padding: 0 10px;
+  color: #fff;
 }
 
 .menuWrapper {
-    flex: 1;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-     :global {
-        .ant-menu-item {
-            color: #fff;
-            background-color: #000;
-            a {
-                font-size: 16px;
-                color: #fff;
-            }
-        }
-        .ant-menu-item-selected,
-        .ant-menu-item-active {
-            background-color: #000 !important;
-            a {
-                color: #a03bba;
-            }
-        }
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  :global {
+    .ant-menu-item {
+      color: #fff;
+      background-color: #000;
+      a {
+        font-size: 16px;
+        color: #fff;
+      }
     }
-    .menuItem {
-        padding: 10px;
-        position: relative;
-        cursor: pointer;
-        .badge {
-            position: absolute;
-            top: 8px;
-            right: 4px;
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 10px;
-            background-origin: padding-box;
-            color: #fff;
-            min-width: 14px;
-            height: 14px;
-            background-color: #eb5757;
-            border-radius: 50%;
-        }
-        &:last-child img {
-            border-radius: 50%;
-            border: 1px solid #c4c4c4;
-            background: #3b3b3b;
-            padding: 8px;
-        }
-        .dropdownToggle {
-            width: 160px;
-            color: #3b3b3b;
-            background: #efefef;
-            border-radius: 150px;
-            padding: 2px 10px 2px 2px;
-            .userName {
-                margin-left: 10px;
-                font-weight: bold;
-            }
-        }
+    .ant-menu-item-selected,
+    .ant-menu-item-active {
+      background-color: #000 !important;
+      a {
+        color: #a03bba;
+      }
     }
+  }
+  .menuItem {
+    padding: 10px;
+    position: relative;
+    cursor: pointer;
+    .badge {
+      position: absolute;
+      top: 8px;
+      right: 4px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 10px;
+      background-origin: padding-box;
+      color: #fff;
+      min-width: 14px;
+      height: 14px;
+      background-color: #eb5757;
+      border-radius: 50%;
+    }
+    &:last-child img {
+      border-radius: 50%;
+    }
+    .dropdownToggle {
+      width: 160px;
+      color: #3b3b3b;
+      background: #efefef;
+      border-radius: 150px;
+      padding: 2px 10px 2px 2px;
+      .userName {
+        margin-left: 10px;
+        font-weight: bold;
+      }
+    }
+  }
 }
 
 .toggleSideBarButton {
-    transform: translateX(5px);
-    z-index: 1;
+  transform: translateX(5px);
+  z-index: 1;
 }
 
 .logoHeader {
-    padding-left: 20px;
-    width: 20%;
+  padding-left: 20px;
+  width: 20%;
 }
 
 .redirectTab {
-    width: 40%;
-    a {
-        padding: 0 40px;
-        color: #000000;
-        font-size: 16px;
-        line-height: 24px;
-        letter-spacing: 0.01em;
-    }
+  width: 40%;
+  a {
+    padding: 0 40px;
+    color: #000000;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.01em;
+  }
 }
 
 .authen {
-    width: 40%;
-    button {
-        padding: 8px 22px;
-        margin: 0 8%;
-        border-radius: 5px;
-        letter-spacing: 0.46px;
-        text-transform: uppercase;
-        font-weight: 500;
-        font-size: 15px;
-        height: auto;
-    }
-    .btnLogin {
-        border: 1px solid rgba(25, 118, 210, 0.5);
-        color: #1976d2;
-        background-color: white;
-    }
-    .btnSignUp {
-        background-color: #ed6c02;
-        border-color: #ed6c02;
-        box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px rgba(0, 0, 0, 0.14), 0px 1px 5px rgba(0, 0, 0, 0.12);
-        color: white;
-    }
+  width: 40%;
+  button {
+    padding: 8px 22px;
+    margin: 0 8%;
+    border-radius: 5px;
+    letter-spacing: 0.46px;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 15px;
+    height: auto;
+  }
+  .btnLogin {
+    border: 1px solid rgba(25, 118, 210, 0.5);
+    color: #1976d2;
+    background-color: white;
+  }
+  .btnSignUp {
+    background-color: #ed6c02;
+    border-color: #ed6c02;
+    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px rgba(0, 0, 0, 0.14), 0px 1px 5px rgba(0, 0, 0, 0.12);
+    color: white;
+  }
 }
 
 .menuContent {
-    margin-right: auto;
-    padding-left: 10px;
+  margin-right: auto;
+  padding-left: 10px;
 }
 
 .isCollapsed {
-    transform: translateX(405px);
-    transition: all 0.3s;
+  transform: translateX(405px);
+  transition: all 0.3s;
 }
 
 @media only screen and (max-width: 992px) {
-    .isCollapsed {
-        transform: translateX(305px);
-    }
+  .isCollapsed {
+    transform: translateX(305px);
+  }
 }

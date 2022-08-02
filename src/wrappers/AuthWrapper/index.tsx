@@ -10,7 +10,7 @@ export default function PageWrapper() {
   // const isAuthenticated = !!Cookies.get('token');
   // const { data: profile } = useQuery('profile', loadProfile, { enabled: isAuthenticated });
 
-  // if (!isAuthenticated) return <Redirect to="/login" />;
+  // if (!isAuthenticated) return <Redirect to="/" />;
   // if (!profile) return null;
   return (
     <div className={styles.pageWrapper}>

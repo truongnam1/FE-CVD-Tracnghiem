@@ -1,55 +1,54 @@
 .category {
-    height: 100%;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  .title {
     width: 100%;
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 0.01em;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 24px;
+    color: #000000;
+    margin: 40px 0 60px 0;
+  }
+  .listCategory {
+    width: 100%;
+    display: flex;
     align-items: center;
     justify-content: flex-start;
-    .title {
-        width: 100%;
+    .boxCategory {
+      display: flex;
+      border-radius: 8px;
+      padding: 10px;
+      .imageCategory {
+        height: 120px;
+        width: 120px;
+        border-radius: 50%;
+        margin-right: 10px;
+      }
+      .infoCategory {
         display: flex;
-        align-items: center;
+        flex-direction: column;
+        align-items: flex-start;
         justify-content: center;
-        letter-spacing: 0.01em;
-        font-weight: 700;
-        font-size: 40px;
-        line-height: 24px;
-        color: #000000;
-        margin: 40px 0 60px 0;
-    }
-    .listCategory {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        .boxCategory {
-            display: flex;
-            background: #E5F7F8;
-            border-radius: 8px;
-            padding: 10px;
-            .imageCategory {
-                height: 120px;
-                width: 120px;
-                border-radius: 50%;
-                margin-right: 10px;
-            }
-            .infoCategory {
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-                justify-content: center;
-                .nameCategory {
-                    font-weight: 700;
-                    font-size: 20px;
-                    line-height: 24px;
-                    margin-bottom: 10px;
-                }
-                .countTestCategory {
-                    font-weight: 400;
-                    font-size: 16px;
-                    line-height: 24px;
-                }
-            }
+        .nameCategory {
+          font-weight: 700;
+          font-size: 20px;
+          line-height: 24px;
+          margin-bottom: 10px;
         }
+        .countTestCategory {
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 24px;
+        }
+      }
     }
+  }
 }
