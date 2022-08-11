@@ -10,6 +10,12 @@ const MyQuestion = lazy(() => import('pages/MyQuestion'));
 const MyListExam = lazy(() => import('pages/MyListExam'));
 const Page404 = lazy(() => import('pages/Page404'));
 const ChangePassword = lazy(() => import('pages/ChangePassword'));
+const CreateExam = lazy(() => import('pages/CreateExam'));
+const PreviewExam = lazy(() => import('pages/PreviewExam'));
+const ExamAction = lazy(() => import('pages/ExamAction'));
+const MyProfile = lazy(() => import('pages/MyProfile'));
+const EditExam = lazy(() => import('pages/EditExam'));
+const ExamHistory = lazy(() => import('pages/ExamHistory'));
 
 export default function AppWrapper() {
   return (
@@ -21,10 +27,16 @@ export default function AppWrapper() {
           <Route path="/" element={<Home />} />
           <Route path="/category" element={<Category />} />
           <Route path="/search-exam" element={<SearchExam />} />
+          <Route path="/exam/preview/:id" element={<PreviewExam />} />
           <Route path="/" element={<PrivateRoute />}>
+            <Route path="/profile" element={<MyProfile />} />
             <Route path="/question" element={<MyQuestion />} />
             <Route path="/exam" element={<MyListExam />} />
+            <Route path="/exam-history" element={<ExamHistory />} />
+            <Route path="/exam/create" element={<CreateExam />} />
+            <Route path="/exam/edit/:id" element={<EditExam />} />
             <Route path="/change-password" element={<ChangePassword />} />
+            <Route path="/exam-action/:id" element={<ExamAction />} />
           </Route>
         </Route>
       </Routes>

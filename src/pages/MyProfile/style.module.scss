@@ -1,0 +1,165 @@
+.myPageProfile {
+    margin-left: 84px;
+    font-weight: 700;
+    position: relative;
+    button {
+        border-radius: 10px;
+        color: white;
+        height: auto;
+    }
+    .title {
+        padding: 10px 30px;
+        h2 {
+            font-size: 18px;
+            font-weight: 700;
+        }
+        .buttonUpgrade {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 8px 10px;
+            background-color: #EFC028;
+            border-color: #EFC028;
+        }
+    }
+    .formProfile {
+        margin: 10px 30px;
+        padding: 20px;
+        background-color: white;
+        border: 0.5px solid #D6D6D6;
+        box-sizing: border-box;
+        border-radius: 10px;
+        .rowForm {
+            flex-flow: column-reverse;
+            flex-direction: row-reverse;
+        }
+        .colFormProfile {
+            .rowName,
+            .rowNameFurigana {
+                display: flex;
+                align-items: flex-end;
+            }
+            .inputProfile,
+            .birthDay {
+                width: 95%;
+                border: 1px solid #D6D6D6;
+                box-sizing: border-box;
+                border-radius: 10px;
+                padding: 12px 10px;
+                height: 45px;
+            }
+            .selectFormProfile {
+                width: 95%;
+                border: 1px solid #D6D6D6;
+                box-sizing: border-box;
+                border-radius: 10px;
+                padding: 8px 0px;
+                height: 45px;
+            }
+            .birthDay {
+                 :global {
+                    .ant-picker-clear {
+                        right: 22px;
+                        @media (max-width: 768px) {
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+        }
+        .colAvatar {
+            padding-left: 15px;
+            border-left: 0.5px solid #D6D6D6;
+            .rowUploadAvatar {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                .textValidate {
+                    color: #888888;
+                    font-weight: 400;
+                }
+                .avatar {
+                    width: 150px;
+                    height: 150px;
+                    border-radius: 50%;
+                    object-fit: fill;
+                }
+                .rowBtnUpload {
+                    width: 100%;
+                    .colBtnUpload {
+                        .btnUpload {
+                            margin: 20px 0 10px 0;
+                            padding: 12px 15px;
+                            background-color: #7A6A56;
+                            color: white;
+                            border-color: #7A6A56;
+                        }
+                        .uploadAvatar {
+                            display: flex;
+                            justify-content: flex-end;
+                            padding-right: 5px;
+                             :global {
+                                .ant-upload.ant-upload-select-picture-card {
+                                    width: auto;
+                                    height: auto;
+                                    margin: 0;
+                                    background-color: white;
+                                    border: none;
+                                }
+                            }
+                        }
+                    }
+                    .colBtnDelete {
+                        display: flex;
+                        padding-left: 5px;
+                        .btnDeleteAvatar {
+                            margin: 20px 0 10px 0;
+                            padding: 12px 30px;
+                            background-color: white;
+                            color: #7A6A56;
+                            border-color: #7A6A56;
+                        }
+                    }
+                }
+            }
+        }
+        .btnSubmitProfile {
+            margin: 10px 0 10px 0;
+            padding: 12px 80px;
+            background-color: #7A6A56;
+            border-color: #7A6A56;
+            font-weight: 700;
+        }
+    }
+     :global {
+        .ant-form-item-explain-error {
+            text-align: left;
+            font-weight: 400;
+        }
+        button {
+            font-weight: 700;
+        }
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .myPageProfile {
+        margin: 0 !important;
+        .title {
+            padding: 10px 15px !important;
+        }
+        .formProfile {
+            margin: 10px 15px !important;
+            padding: 10px !important;
+            .rowForm {
+                flex-flow: row wrap !important;
+            }
+        }
+        .colAvatar {
+            padding: 0 !important;
+            border: none !important;
+            margin-bottom: 30px;
+        }
+    }
+}

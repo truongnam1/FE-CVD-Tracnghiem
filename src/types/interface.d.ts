@@ -1,6 +1,11 @@
 declare interface IFilterListQuestion {
   status?: number;
+  typeQuestion?: number;
   category?: number;
+  grade?: number;
+  group?: number;
+  level?: number;
+  subject?: number;
   keyWord?: string;
   page: number;
   per_page: number;
@@ -30,8 +35,9 @@ declare interface QuestionInterface {
 declare interface CategoryInterface {
   id: number;
   name: string;
-  countTest?: number;
+  totalExam?: number;
   image?: string;
+  avatar?: string;
 }
 
 declare interface TypeQuestionInterface {
@@ -57,13 +63,14 @@ declare interface GroupQuestionInterface {
 declare interface ExamInterface {
   id: number;
   name: string;
-  countQuestion: number;
-  countExam: number;
-  subjects: {
+  totalQuestion: number;
+  totalNumberTest: number;
+  subject?: {
     id: number;
     name: string;
-  }[];
-  image: string;
+  };
+  image?: {url?: string};
+  time?: number | null;
 }
 
 declare interface IColumnTable {
@@ -85,20 +92,46 @@ declare interface InitialValueQuestionFormInterface {
   options: any[];
 }
 
+declare interface LoginParamsInterface {
+  username: string;
+  password: string;
+}
+
 declare interface SignUpParamsInterface {
   email: string;
   username: string;
   displayName: string;
   password: string;
-  confirmPassword: string;
 }
 
 declare interface ChangePasswordParamsInterface {
   oldPassword: string;
   newPassword: string;
   confirmPassword: string;
+  id: number;
 }
 
 declare interface ForgotPasswordParamsInterface {
   email: string;
+}
+
+declare interface FindExamInterface {
+  id: number;
+  image: string;
+  name: string;
+  totalQuestion: number;
+}
+
+declare interface OptionQuestionDetailInterface {
+  id: number;
+  content: string;
+  type?: number; // true/fasle
+}
+
+declare interface QuestionDetailInterface {
+  id: number;
+  uuid?: string;
+  type: number;
+  content: string;
+  options: OptionQuestionDetailInterface[];
 }

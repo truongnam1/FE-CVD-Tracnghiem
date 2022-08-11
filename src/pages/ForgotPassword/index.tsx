@@ -8,19 +8,24 @@ import { forgotPassword } from 'api/authentication';
 
 interface ForgotPasswordProps {
   handleShowLogin: () => void;
+  onSetVisible: {setVisibleOtp: (value: boolean) => void, setVisibleForGot: (value: boolean) => void};
+  setEmail: (value: string) => void;
 }
 
 export default function ForgotPassword(props: ForgotPasswordProps) {
-  const { handleShowLogin } = props;
+  const { handleShowLogin, onSetVisible, setEmail } = props;
   const { t } = useTranslation();
   const [isLoadingSubmit, setIsLoadingSubmit] = useState<boolean>(false);
+  const [form] = Form.useForm();
 
   const { mutate: postForgotPassword } = useMutation(
     (params: ForgotPasswordParamsInterface) => forgotPassword(params),
     {
       onSuccess: (response: any) => {
-        console.log(response);
         setIsLoadingSubmit(false);
+        onSetVisible.setVisibleOtp(true);
+        form.resetFields();
+        onSetVisible.setVisibleForGot(false);
       },
       onError: (error) => {
         handleErrorMessage(error);
@@ -35,11 +40,13 @@ export default function ForgotPassword(props: ForgotPasswordProps) {
       email: payload.email,
     };
 
+    setEmail(payload?.email);
+
     postForgotPassword(data);
   };
 
   return (
-    <Form onFinish={handleSubmit} className={styles.forgotPasswordForm}>
+    <Form onFinish={handleSubmit} form={form} className={styles.forgotPasswordForm}>
       <Row justify="center">
         <h2>{t('modalForgotPassword.title')}</h2>
       </Row>

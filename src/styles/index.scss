@@ -1,1 +1,51 @@
 // global style
+@import 'scss/abstract/variables';
+// Normal modal confirm
+.modal-confirm-normal {
+    .ant-modal-content {
+        border-radius: 15px;
+        .ant-modal-confirm-body {
+            text-align: center;
+            .ant-modal-confirm-title {
+                font-size: 16px;
+                font-weight: bold;
+                white-space: pre-line;
+            }
+        }
+        .ant-modal-confirm-btns {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            button {
+                border-radius: 10px;
+                height: 40px;
+                font-size: 14px;
+                font-weight: 700;
+                width: 100%;
+                &.only-ok-btn {
+                    width: 168px !important;
+                    margin: 0 auto;
+                }
+                &:hover {
+                    -ms-transform: scale(1.05);
+                    -webkit-transform: scale(1.05);
+                    transform: scale(1.05);
+                }
+                .ant-click-animating-node {
+                    display: none;
+                }
+                &:first-child {
+                    background-color: $white;
+                    color: $bg-btn-search-price;
+                    border: 1px solid $bg-btn-search-price;
+                }
+                &:last-child {
+                    background-color: $bg-btn-search-price;
+                    color: $white;
+                    border: 1px solid $bg-btn-search-price;
+                }
+            }
+        }
+    }
+}

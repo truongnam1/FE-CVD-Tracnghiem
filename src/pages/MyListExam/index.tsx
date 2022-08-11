@@ -1,5 +1,5 @@
-import React, { useCallback, useMemo, useState } from 'react';
-import { Button, Col, Input, Modal, Pagination, Popover, Row, Select, Spin, Table } from 'antd';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { Button, Col, Input, message, Modal, Pagination, Popover, Row, Select, Spin, Table } from 'antd';
 import dayjs from 'dayjs';
 import { useTranslation } from 'react-i18next';
 
@@ -10,171 +10,135 @@ import iconSearch from 'assets/images/SearchFilled.svg';
 import iconAdd from 'assets/images/add-white.svg';
 import iconActive from 'assets/images/active.svg';
 import iconInactive from 'assets/images/inactive.svg';
-import CommonQuestionForm from 'components/CommonQuestionForm';
-import { QUESTION_STATUS } from 'contants/constants';
+import { EXAM_STATUS, TOKEN_CUSTOMER } from 'contants/constants';
 import SideNav from 'components/SideNav';
+import { useNavigate } from 'react-router-dom';
+import {
+  useGetCountMyExam,
+  useGetListGradeExam,
+  useGetListMyExam,
+  useGetListStatusExam,
+  useGetListSubjectExam,
+} from 'hooks/useExam';
+import { GET_CUSTOMER_PROFILE, GET_MY_LIST_EXAM } from 'contants/keyQuery';
+import Cookies from 'js-cookie';
+import { useIsFetching, useMutation, useQueryClient } from 'react-query';
+import { deleteMyExam } from 'api/exam';
+import { handleErrorMessage } from 'helper';
 
 const { Option } = Select;
 
-const defaultFilter: IFilterListQuestion = {
-  status: undefined,
-  category: undefined,
+const defaultFilter: any = {
+  subject: undefined,
+  examStatusId: undefined,
   keyWord: '',
+  gradeId: undefined,
   page: 1,
   per_page: 10,
 };
 
 export default function MyListExam() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  const isAuthenticated = !!Cookies.get(TOKEN_CUSTOMER);
+  const queryClient = useQueryClient();
+  const isFetching = useIsFetching({
+    queryKey: GET_CUSTOMER_PROFILE,
+  });
+  const [profile, setProfile] = useState<any>();
+  const [filter, setFilter] = useState<any>(defaultFilter);
+  const [inputFind, setInputFind] = useState<string>('');
+  const [isLoadingDelete, setIsLoadingDelete] = useState<boolean>(false);
+  const [isModalDeleteVisible, setIsModalDeleteVisible] = useState<boolean>(false);
+  const [deleteQuestionId, setDeleteQuestionId] = useState<number>(0);
 
-  const [filter, setFilter] = useState<IFilterListQuestion>(defaultFilter);
-  const [isModalAddQuestionVisible, setIsModalAddQuestionVisible] = useState<boolean>(false);
+  const { mutate: deletePost } = useMutation((params: any) => deleteMyExam(params), {
+    onSuccess: () => {
+      message.success('Xóa đề thi thành công.');
+      queryClient.refetchQueries([GET_MY_LIST_EXAM]);
+      setIsLoadingDelete(false);
+      setIsModalDeleteVisible(false);
+    },
+    onError: (error) => {
+      handleErrorMessage(error);
+      setIsLoadingDelete(false);
+      setIsModalDeleteVisible(false);
+    },
+  });
 
-  // const { data: listCategory, isLoading: isLoadingCategory }: any = {}
+  const { data: listExam, isLoading: isLoadingExam } = useGetListMyExam({
+    skip: (filter.page - 1) * 10,
+    take: 10,
+    creatorId: {
+      equal: profile?.id,
+    },
+    subjectId: {
+      equal: filter.subjectId,
+    },
+    examStatusId: {
+      equal: filter.examStatusId,
+    },
+    gradeId: {
+      equal: filter.gradeId,
+    },
+    name: {
+      contain: filter.keyWord,
+    },
+  });
+  const { data: countExams } = useGetCountMyExam({
+    skip: (filter.page - 1) * 10,
+    take: 10,
+    creatorId: {
+      equal: profile?.id,
+    },
+    subjectId: {
+      equal: filter.subjectId,
+    },
+    examStatusId: {
+      equal: filter.examStatusId,
+    },
+    gradeId: {
+      equal: filter.gradeId,
+    },
+    name: {
+      contain: filter.keyWord,
+    },
+  });
+  const { data: listSubject, isLoading: isLoadingSubject } = useGetListSubjectExam({});
+  const { data: listGrade, isLoading: isLoadingGrade } = useGetListGradeExam({});
+  const { data: listStatusExam, isLoading: isLoadingStatusExam } = useGetListStatusExam({});
 
-  const isLoadingListCategory = false;
-  const listCategory: CategoryInterface[] = [
-    {
-      id: 1,
-      name: 'Tin học',
-    },
-    {
-      id: 2,
-      name: 'Tin học',
-    },
-    {
-      id: 3,
-      name: 'Tin học',
-    },
-    {
-      id: 4,
-      name: 'Tin học',
-    },
-    {
-      id: 5,
-      name: 'Tin học',
-    },
-  ];
-  const isLoadingQuestion = false;
-  const listQuestion: QuestionInterface[] = [
-    {
-      id: 1,
-      code: 'OPA1',
-      content: 'Opal Skyview',
-      group: 'Hoá học',
-      createdAt: '2021-08-06 17:21:59',
-      updatedAt: '2021-08-06 17:21:59',
-      status: 1,
-    },
-    {
-      id: 2,
-      code: 'OPA1',
-      content: 'Opal Skyview',
-      group: 'Hoá học',
-      createdAt: '2021-08-06 17:21:59',
-      updatedAt: '2021-08-06 17:21:59',
-      status: 1,
-    },
-    {
-      id: 3,
-      code: 'OPA1',
-      content: 'Opal Skyview',
-      group: 'Hoá học',
-      createdAt: '2021-08-06 17:21:59',
-      updatedAt: '2021-08-06 17:21:59',
-      status: 0,
-    },
-    {
-      id: 4,
-      code: 'OPA1',
-      content: 'Opal Skyview',
-      group: 'Hoá học',
-      createdAt: '2021-08-06 17:21:59',
-      updatedAt: '2021-08-06 17:21:59',
-      status: 1,
-    },
-    {
-      id: 5,
-      code: 'OPA1',
-      content: 'Opal Skyview',
-      group: 'Hoá học',
-      createdAt: '2021-08-06 17:21:59',
-      updatedAt: '2021-08-06 17:21:59',
-      status: 1,
-    },
-    {
-      id: 6,
-      code: 'OPA1',
-      content: 'Opal Skyview',
-      group: 'Hoá học',
-      createdAt: '2021-08-06 17:21:59',
-      updatedAt: '2021-08-06 17:21:59',
-      status: 0,
-    },
-    {
-      id: 7,
-      code: 'OPA1',
-      content: 'Opal Skyview',
-      group: 'Hoá học',
-      createdAt: '2021-08-06 17:21:59',
-      updatedAt: '2021-08-06 17:21:59',
-      status: 1,
-    },
-    {
-      id: 8,
-      code: 'OPA1',
-      content: 'Opal Skyview',
-      group: 'Hoá học',
-      createdAt: '2021-08-06 17:21:59',
-      updatedAt: '2021-08-06 17:21:59',
-      status: 1,
-    },
-    {
-      id: 9,
-      code: 'OPA1',
-      content: 'Opal Skyview',
-      group: 'Hoá học',
-      createdAt: '2021-08-06 17:21:59',
-      updatedAt: '2021-08-06 17:21:59',
-      status: 1,
-    },
-    {
-      id: 10,
-      code: 'OPA1',
-      content: 'Opal Skyview',
-      group: 'Hoá học',
-      createdAt: '2021-08-06 17:21:59',
-      updatedAt: '2021-08-06 17:21:59',
-      status: 1,
-    },
-  ];
-
-  const dataSource: IDataColumnTableQuestion[] | undefined = useMemo(() => {
-    return listQuestion.map((question: QuestionInterface, index: number) => ({
+  const dataSource: any[] | undefined = useMemo(() => {
+    return listExam?.map((exam: any, index: number) => ({
       key: index + 1 + (filter.page - 1) * 10,
       id: index + 1 + (filter.page - 1) * 10,
-      code: question.code,
-      content: question.content,
-      group: question.content,
-      createdAt: dayjs(question.createdAt).format('YYYY/MM/DD'),
-      updatedAt: dayjs(question.updatedAt).format('YYYY/MM/DD'),
+      code: exam?.code,
+      name: exam?.name,
+      subject: exam?.subject?.name,
+      grade: exam?.grade?.name,
+      createdAt: dayjs(exam?.createdAt).format('YYYY/MM/DD'),
+      updatedAt: dayjs(exam?.updatedAt).format('YYYY/MM/DD'),
       status: (
         <div className={styles.divStatus}>
           <img
             height={24}
             width={24}
-            src={question.status === QUESTION_STATUS.ACTIVE ? iconActive : iconInactive}
+            src={exam?.examStatus?.id === EXAM_STATUS.ACTIVE ? iconActive : iconInactive}
             alt="More"
           />{' '}
-          {question.status === QUESTION_STATUS.ACTIVE ? t('myListExam.active') : t('myListExam.inactive')}
+          {exam?.examStatus?.name}
         </div>
       ),
       handle: (
         <Popover
           content={
             <div className={styles.popoverMore}>
-              <p className={styles.popoverEdit}>{t('common.edit')}</p>
-              <p className={styles.popoverDelete}>{t('common.delete')}</p>
+              <p className={styles.popoverEdit} onClick={() => navigate('/exam/edit/' + exam.id)}>
+                {t('common.edit')}
+              </p>
+              <p className={styles.popoverDelete} onClick={() => handleDeleteQuestion(exam.id)}>
+                {t('common.delete')}
+              </p>
             </div>
           }
         >
@@ -182,7 +146,8 @@ export default function MyListExam() {
         </Popover>
       ),
     }));
-  }, [listQuestion, filter, t]);
+    // eslint-disable-next-line
+  }, [listExam, filter, t]);
 
   const columns: IColumnTable[] = [
     {
@@ -198,15 +163,21 @@ export default function MyListExam() {
       className: styles.codeColumn,
     },
     {
-      title: <strong>{t('myListExam.content')}</strong>,
-      dataIndex: 'content',
-      key: 'content',
+      title: <strong>{t('myListExam.name')}</strong>,
+      dataIndex: 'name',
+      key: 'name',
       className: styles.contentColumn,
     },
     {
-      title: <strong>{t('myListExam.group')}</strong>,
-      dataIndex: 'group',
-      key: 'group',
+      title: <strong>{t('myListExam.subject')}</strong>,
+      dataIndex: 'subject',
+      key: 'subject',
+      className: styles.groupColumn,
+    },
+    {
+      title: <strong>{t('myListExam.grade')}</strong>,
+      dataIndex: 'grade',
+      key: 'grade',
       className: styles.groupColumn,
     },
     {
@@ -234,38 +205,46 @@ export default function MyListExam() {
     },
   ];
 
-  const handleChangeStatus = useCallback(
+  const handleChangeExamStatus = useCallback(
     (selectedValue: number) => {
       setFilter({
         ...filter,
         page: 1,
-        status: selectedValue,
+        examStatusId: selectedValue,
       });
     },
     [filter]
   );
 
-  const handleChangeCategory = useCallback(
-    (selectedValue: number) => {
+  const handleChangeSubject = useCallback(
+    (value: number) => {
       setFilter({
         ...filter,
         page: 1,
-        category: selectedValue,
+        subjectId: value,
       });
     },
     [filter]
   );
 
-  const handleChangeKeyWord = useCallback(
-    (value: string) => {
+  const handleChangeGrade = useCallback(
+    (value: number) => {
       setFilter({
         ...filter,
         page: 1,
-        keyWord: value,
+        gradeId: value,
       });
     },
     [filter]
   );
+
+  const handleChangeKeyWord = useCallback(() => {
+    setFilter({
+      ...filter,
+      page: 1,
+      keyWord: inputFind,
+    });
+  }, [filter, inputFind]);
 
   const handleChangePage = useCallback(
     (page: number) => {
@@ -274,13 +253,53 @@ export default function MyListExam() {
     [filter]
   );
 
-  const optionSelectCategory = useMemo(() => {
-    return listCategory.map((category: CategoryInterface) => (
-      <Option key={'category' + category.id} value={category.id} selected={category.id === filter.category}>
-        {category.name}
+  const handleSubmitModalDelete = useCallback(() => {
+    setIsLoadingDelete(true);
+    deletePost({
+      id: deleteQuestionId,
+    });
+  }, [deleteQuestionId, deletePost]);
+
+  const handleCancelModalDelete = () => {
+    setIsModalDeleteVisible(false);
+  };
+
+  const handleDeleteQuestion = useCallback((id: number) => {
+    if (id) {
+      setDeleteQuestionId(id);
+      setIsModalDeleteVisible(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (isFetching) return;
+    const profileResponse: any = queryClient.getQueryData([GET_CUSTOMER_PROFILE, isAuthenticated]);
+    setProfile(profileResponse);
+  }, [isFetching, queryClient, isAuthenticated]);
+
+  const optionSelectSubject = useMemo(() => {
+    return listSubject?.map((subject: CategoryInterface) => (
+      <Option key={'subject' + subject.id} value={subject.id}>
+        {subject.name}
       </Option>
     ));
-  }, [filter.category, listCategory]);
+  }, [listSubject]);
+
+  const optionSelectGrade = useMemo(() => {
+    return listGrade?.map((grade: GradeInterface) => (
+      <Option key={'grade' + grade.id} value={grade.id}>
+        {grade.name}
+      </Option>
+    ));
+  }, [listGrade]);
+
+  const optionSelectStatusExam = useMemo(() => {
+    return listStatusExam?.map((statusExam: GroupQuestionInterface) => (
+      <Option key={'statusExam' + statusExam.id} value={statusExam.id}>
+        {statusExam.name}
+      </Option>
+    ));
+  }, [listStatusExam]);
 
   return (
     <div className={styles.myListExam}>
@@ -291,45 +310,44 @@ export default function MyListExam() {
         </Col>
         <Col span={24} className={styles.colFilterAdd}>
           <Col xs={24} sm={24} md={16} lg={16} xl={16} className={styles.colFilter}>
-            <Select
-              value={filter.status}
-              placeholder={t('myListExam.status')}
-              className={styles.select}
-              bordered={false}
-              onChange={handleChangeStatus}
-            >
-              <Option
-                value={QUESTION_STATUS.ACTIVE}
-                selected={filter.status === QUESTION_STATUS.ACTIVE}
-                key={'optionStatus' + QUESTION_STATUS.ACTIVE}
-              >
-                {t('myListExam.active')}
-              </Option>
-              <Option
-                value={QUESTION_STATUS.INACTIVE}
-                selected={filter.status === QUESTION_STATUS.INACTIVE}
-                key={'optionStatus' + QUESTION_STATUS.INACTIVE}
-              >
-                {t('myListExam.inactive')}
-              </Option>
-            </Select>
-            <Select
-              value={filter.category}
-              className={styles.select}
-              bordered={false}
-              onChange={handleChangeCategory}
-              loading={isLoadingListCategory}
-              placeholder={t('myListExam.category')}
-            >
-              {optionSelectCategory}
-            </Select>
             <Input
               className={styles.input}
               prefix={<img src={iconSearch} alt="search" />}
-              placeholder={t('common.find')}
-              value={filter.keyWord}
-              onChange={(e) => handleChangeKeyWord(e.currentTarget.value)}
+              placeholder={'Tìm kiếm đề thi'}
+              value={inputFind}
+              onChange={(e) => setInputFind(e.currentTarget.value)}
+              onBlur={handleChangeKeyWord}
             />
+            <Select
+              className={styles.select}
+              bordered={false}
+              loading={isLoadingSubject}
+              placeholder={t('questionForm.category')}
+              onChange={handleChangeSubject}
+              allowClear
+            >
+              {optionSelectSubject}
+            </Select>
+            <Select
+              className={styles.select}
+              bordered={false}
+              loading={isLoadingGrade}
+              placeholder={t('questionForm.grade')}
+              onChange={handleChangeGrade}
+              allowClear
+            >
+              {optionSelectGrade}
+            </Select>
+            <Select
+              className={styles.select}
+              bordered={false}
+              loading={isLoadingStatusExam}
+              placeholder={'Trạng thái công bố'}
+              onChange={handleChangeExamStatus}
+              allowClear
+            >
+              {optionSelectStatusExam}
+            </Select>
           </Col>
           <Col xs={24} sm={24} md={8} lg={8} xl={8} className={styles.colBtn}>
             <Button
@@ -337,51 +355,65 @@ export default function MyListExam() {
               type="primary"
               htmlType="button"
               className={styles.btnAdd}
-              onClick={() => setIsModalAddQuestionVisible(true)}
+              onClick={() => navigate('/exam/create')}
             >
               {t('common.addNew').toUpperCase()} <img height={16} width={16} src={iconAdd} alt="Add" />
             </Button>
           </Col>
         </Col>
       </Row>
-      {!isLoadingQuestion && (
+      {!isLoadingExam && (
         <Table
           className={styles.table}
           bordered={false}
           dataSource={dataSource}
           columns={columns}
           pagination={false}
-          scroll={{ x: !!dataSource.length ? true : undefined }}
+          scroll={{ x: !!dataSource?.length ? true : undefined }}
           rowClassName={(record, index) => (index % 2 ? '' : 'hasBackground')}
           locale={{ emptyText: t('common.noData') }}
         />
       )}
-      {isLoadingQuestion && <Spin size="large" />}
-      {!isLoadingQuestion && (
+      {isLoadingExam && <Spin size="large" />}
+      {!isLoadingExam && (
         <Col span={24} className={styles.colPagination}>
           <Col xs={24} sm={24} md={12} lg={12} xl={12} className={styles.textPagination}>
-            <strong>
-              {t('myListExam.showCount', {
-                total: 100,
-                from: 1,
-                to: 10,
-              })}
-            </strong>
+            <strong>Tổng số lượng: {countExams}</strong>
           </Col>
           <Col xs={24} sm={24} md={12} lg={12} xl={12} className={styles.pagination}>
-            <Pagination onChange={handleChangePage} total={100} current={filter.page} pageSize={filter.per_page} />
+            <Pagination
+              onChange={handleChangePage}
+              total={countExams}
+              current={filter.page}
+              pageSize={filter.per_page}
+            />
           </Col>
         </Col>
       )}
       <Modal
-        className={styles.modalQuestion}
-        visible={isModalAddQuestionVisible}
-        onCancel={() => setIsModalAddQuestionVisible(false)}
-        closable={true}
+        className={styles.modalYesNo}
+        visible={isModalDeleteVisible}
+        closable={false}
         centered={true}
         footer={false}
       >
-        <CommonQuestionForm />
+        <div className={styles.title}>
+          <strong>Bạn có muốn xóa câu hỏi này không?</strong>
+        </div>
+        <div className={styles.button}>
+          <Button type="primary" htmlType="button" onClick={handleCancelModalDelete} className={styles.buttonCancel}>
+            {t('common.btnCancel')}
+          </Button>
+          <Button
+            type="primary"
+            htmlType="button"
+            onClick={handleSubmitModalDelete}
+            className={styles.buttonOk}
+            loading={isLoadingDelete}
+          >
+            {t('common.btnOk')}
+          </Button>
+        </div>
       </Modal>
     </div>
   );

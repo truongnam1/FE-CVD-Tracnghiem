@@ -16,7 +16,10 @@
     "delete": "Xóa",
     "addNew": "Thêm mới",
     "noData": "Không có dữ liệu",
-    "save": "Lưu"
+    "save": "Lưu",
+    "confirmLogOut": "Bạn có muốn đăng xuất không?",
+    "btnOk": "OK",
+    "btnCancel": "Hủy"
   },
   "home": {
     "mainAppName": "TRẮC NGHIỆM ONLINE",
@@ -57,7 +60,8 @@
     "content": "Nội dung câu hỏi",
     "group": "Nhóm câu hỏi",
     "createdAt": "Ngày tạo",
-    "updatedAt": "Ngày cập nhật"
+    "updatedAt": "Ngày cập nhật",
+    "find": "Tìm kiếm mã, nội dung câu hỏi"
   },
   "myListExam": {
     "exam": "Đề thi",
@@ -68,14 +72,46 @@
     "active": "Hoạt động",
     "inactive": "Không hoạt động",
     "id": "STT",
-    "code": "Mã câu hỏi",
-    "content": "Nội dung câu hỏi",
-    "group": "Nhóm câu hỏi",
+    "code": "Mã đề thi",
+    "content": "Tên đề thi",
+    "group": "Nhóm đề thi",
     "createdAt": "Ngày tạo",
-    "updatedAt": "Ngày cập nhật"
+    "updatedAt": "Ngày cập nhật",
+    "name": "Tên bài thi",
+    "subject": "Chủ đề",
+    "grade": "Lớp"
+  },
+  "createExam": {
+    "title": "Tạo đề thi mới",
+    "showResultFindExam": "Hiện thị kết quả cho '{{keyWord}}'",
+    "addQuestionNew": "Thêm câu hỏi mới",
+    "addQuestionSuccess": "Thêm câu hỏi thành công.",
+    "removeQuestionSuccess": "Xóa câu hỏi thành công.",
+    "addImage": "Thêm ảnh",
+    "removeImage": "Xóa ảnh",
+    "examName": "Tên bài thi",
+    "examStatus": "Trạng thái bài thi",
+    "active": "Công khai",
+    "inactive": "Không công khai",
+    "draft": "Nháp",
+    "create": "Tạo bài thi"
+  },
+  "commonQuestionBox": {
+    "numberQuestion": "Câu {{number}}.",
+    "typePickOne": "Chọn phương án đúng nhất",
+    "typeMultiPick": "Chọn nhiều phương án",
+    "typeFill": "Điền phương án tự luận",
+    "fillTrueOption": "Điền vào câu trả lời đúng nhất",
+    "trueOption": "Phương án đúng",
+    "falseOption": "Phương án sai",
+    "otherOption": "Phương án thay thế",
+    "addOption": "Thêm vào",
+    "pickOneOption": "Lựa chọn một câu trả lời đúng",
+    "pickMultiOption": "Lựa chọn một (nhiều) câu trả đúng"
   },
   "questionForm": {
     "addQuestion": "Thêm mới câu hỏi",
+    "editQuestion": "Sửa câu hỏi",
     "typeQuestion": "Loại câu hỏi",
     "groupQuestion": "Nhóm câu hỏi",
     "grade": "Lớp",
@@ -93,11 +129,12 @@
     "username": "Tên tài khoản",
     "password": "Mật khẩu",
     "notHaveAccount": "Bạn Chưa có tài khoản?",
-    "forgotPassword": "Quên mật khẩu"
+    "forgotPassword": "Quên mật khẩu",
+    "loginSuccess": "Đăng nhập thành công."
   },
   "modalSignUp": {
     "title": "Đăng ký tài khoản",
-    "fullName": "Họ và tên",
+    "displayName": "Họ và tên",
     "username": "Tên tài khoản",
     "password": "Mật khẩu",
     "confirmPassword": "Nhập lại mật khẩu",
@@ -106,7 +143,8 @@
     "email": "Email",
     "validate": {
       "confirmPasswordInvalid": "Nhập lại mật khẩu không đúng."
-    }
+    },
+    "signUpSuccess": "Chúc mừng bạn đã đăng kí tài khoản thành công. Vui lòng đăng nhập."
   },
   "modalChangePassword": {
     "title": "Đổi mật khẩu mới",
@@ -124,5 +162,13 @@
   "validate": {
     "usernameRequired": "Vui lòng nhập tài khoản",
     "passwordRequired": "Vui lòng nhập mật khẩu"
+  },
+  "previewExam" : {
+    "timeExamLimit": "{{time}} phút",
+    "timeExamNoLimit": "Không giới hạn",
+    "start": "Bắt đầu thi"
+  },
+  "examAction": {
+    "btnSubmit": "Nộp bài"
   }
 }

@@ -34,7 +34,7 @@ axiosInstance.interceptors.response.use(
       logout();
       return Promise.reject(error);
     }
-    return Axios.post(`${configs.API_DOMAIN}/auth/request-access-token`, {
+    return Axios.post(`${configs.API_DOMAIN}/rpc/tracnghiem/profile/refresh-token`, {
       refreshToken,
     })
       .then((res) => {

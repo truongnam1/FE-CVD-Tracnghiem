@@ -10,6 +10,7 @@ import styles from './styles.module.scss';
 import avatarImg from 'assets/images/profile.png';
 import questionImg from 'assets/images/question.png';
 import examImg from 'assets/images/exam.png';
+import examHistoryImg from 'assets/images/history-exam.png';
 import passwordImg from 'assets/images/password.png';
 
 const collapseIcon = (
@@ -68,6 +69,12 @@ export default function SideNav() {
     },
     {
       key: '4',
+      text: 'Lịch sử bài thi',
+      url: '/exam-history',
+      icon: <img className={styles.icon} height={24} width={24} src={examHistoryImg} alt="examManagement" />,
+    },
+    {
+      key: '5',
       text: 'Đổi mật khẩu',
       url: '/change-password',
       icon: <img className={styles.icon} height={24} width={24} src={passwordImg} alt="changePassword" />,

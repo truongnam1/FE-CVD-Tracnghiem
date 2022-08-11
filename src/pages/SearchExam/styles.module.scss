@@ -103,8 +103,11 @@
                         border-radius: 5px;
                         margin-bottom: 10px;
                         .imageExam {
-                            height: 125px;
-                            width: 200px;
+                            min-height: 125px;
+                            max-height: 125px;
+                            min-width: 200px;
+                            max-width: 200px;
+                            object-fit: cover;
                             margin-right: 10px;
                             border-radius: 5px;
                         }
@@ -135,6 +138,9 @@
                                 line-height: 16px;
                                 letter-spacing: 0.16px;
                                 margin-bottom: 10px;
+                                span {
+                                    color: #999999;
+                                }
                             }
                             .countInfoExam {
                                 display: flex;
@@ -143,7 +149,7 @@
                                     width: 40%;
                                     display: flex;
                                     align-items: center;
-                                    img {
+                                    .icon {
                                         margin-right: 5px;
                                         height: 24px;
                                         width: 24px;

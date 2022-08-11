@@ -1,5 +1,5 @@
-import React, { useCallback, useMemo, useState } from 'react';
-import { Button, Col, Input, Modal, Pagination, Popover, Row, Select, Spin, Table } from 'antd';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { Button, Col, Input, message, Modal, Pagination, Popover, Row, Select, Spin, Table } from 'antd';
 import dayjs from 'dayjs';
 import { useTranslation } from 'react-i18next';
 
@@ -11,14 +11,20 @@ import iconAdd from 'assets/images/add-white.svg';
 import iconActive from 'assets/images/active.svg';
 import iconInactive from 'assets/images/inactive.svg';
 import CommonQuestionForm from 'components/CommonQuestionForm';
-import { QUESTION_STATUS } from 'contants/constants';
+import { QUESTION_STATUS, TOKEN_CUSTOMER } from 'contants/constants';
 import SideNav from 'components/SideNav';
+import { useGetCountQuestions, useGetListGroupQuestion, useListQuestion } from 'hooks/useQuestion';
+import { GET_CUSTOMER_PROFILE, GET_LIST_QUESTION } from 'contants/keyQuery';
+import Cookies from 'js-cookie';
+import { useIsFetching, useMutation, useQueryClient } from 'react-query';
+import { handleErrorMessage } from 'helper';
+import { deleteQuestion } from 'api/question';
 
 const { Option } = Select;
 
 const defaultFilter: IFilterListQuestion = {
   status: undefined,
-  category: undefined,
+  group: undefined,
   keyWord: '',
   page: 1,
   per_page: 10,
@@ -26,136 +32,98 @@ const defaultFilter: IFilterListQuestion = {
 
 export default function MyQuestion() {
   const { t } = useTranslation();
-
+  const isAuthenticated = !!Cookies.get(TOKEN_CUSTOMER);
+  const queryClient = useQueryClient();
+  const isFetching = useIsFetching({
+    queryKey: GET_CUSTOMER_PROFILE,
+  });
+  const [profile, setProfile] = useState<any>();
   const [filter, setFilter] = useState<IFilterListQuestion>(defaultFilter);
   const [isModalAddQuestionVisible, setIsModalAddQuestionVisible] = useState<boolean>(false);
+  const [questionSelectedId, setQuestionSelectedId] = useState<number>();
+  const [inputFind, setInputFind] = useState<string>('');
+  const [isLoadingDelete, setIsLoadingDelete] = useState<boolean>(false);
+  const [isModalDeleteVisible, setIsModalDeleteVisible] = useState<boolean>(false);
+  const [deleteQuestionId, setDeleteQuestionId] = useState<number>(0);
 
-  // const { data: listCategory, isLoading: isLoadingCategory }: any = {}
+  const { mutate: deletePost } = useMutation((params: any) => deleteQuestion(params), {
+    onSuccess: () => {
+      message.success('Xóa câu hỏi thành công.');
+      queryClient.refetchQueries([GET_LIST_QUESTION]);
+      setIsLoadingDelete(false);
+      setIsModalDeleteVisible(false);
+    },
+    onError: (error) => {
+      handleErrorMessage(error);
+      setIsLoadingDelete(false);
+      setIsModalDeleteVisible(false);
+    },
+  });
 
-  const isLoadingListCategory = false;
-  const listCategory: CategoryInterface[] = [
-    {
-      id: 1,
-      name: 'Tin học',
+  const { data: listGroup, isLoading: isLoadingListGroup } = useGetListGroupQuestion({});
+  const { data: listQuestion, isLoading: isLoadingQuestion } = useListQuestion({
+    skip: (filter.page - 1) * 10,
+    take: 10,
+    creatorId: {
+      equal: profile?.id,
     },
-    {
-      id: 2,
-      name: 'Tin học',
+    search: filter.keyWord,
+    questionGroupId: {
+      equal: filter.group,
     },
-    {
-      id: 3,
-      name: 'Tin học',
+    statusId: {
+      equal: filter.status,
     },
-    {
-      id: 4,
-      name: 'Tin học',
+  });
+
+  const { data: countQuestions } = useGetCountQuestions({
+    creatorId: {
+      equal: profile?.id,
     },
-    {
-      id: 5,
-      name: 'Tin học',
+    search: filter.keyWord,
+    questionGroupId: {
+      equal: filter.group,
     },
-  ];
-  const isLoadingQuestion = false;
-  const listQuestion: QuestionInterface[] = [
-    {
-      id: 1,
-      code: 'OPA1',
-      content: 'Opal Skyview',
-      group: 'Hoá học',
-      createdAt: '2021-08-06 17:21:59',
-      updatedAt: '2021-08-06 17:21:59',
-      status: 1,
+    statusId: {
+      equal: filter.status,
     },
-    {
-      id: 2,
-      code: 'OPA1',
-      content: 'Opal Skyview',
-      group: 'Hoá học',
-      createdAt: '2021-08-06 17:21:59',
-      updatedAt: '2021-08-06 17:21:59',
-      status: 1,
-    },
-    {
-      id: 3,
-      code: 'OPA1',
-      content: 'Opal Skyview',
-      group: 'Hoá học',
-      createdAt: '2021-08-06 17:21:59',
-      updatedAt: '2021-08-06 17:21:59',
-      status: 0,
-    },
-    {
-      id: 4,
-      code: 'OPA1',
-      content: 'Opal Skyview',
-      group: 'Hoá học',
-      createdAt: '2021-08-06 17:21:59',
-      updatedAt: '2021-08-06 17:21:59',
-      status: 1,
-    },
-    {
-      id: 5,
-      code: 'OPA1',
-      content: 'Opal Skyview',
-      group: 'Hoá học',
-      createdAt: '2021-08-06 17:21:59',
-      updatedAt: '2021-08-06 17:21:59',
-      status: 1,
-    },
-    {
-      id: 6,
-      code: 'OPA1',
-      content: 'Opal Skyview',
-      group: 'Hoá học',
-      createdAt: '2021-08-06 17:21:59',
-      updatedAt: '2021-08-06 17:21:59',
-      status: 0,
-    },
-    {
-      id: 7,
-      code: 'OPA1',
-      content: 'Opal Skyview',
-      group: 'Hoá học',
-      createdAt: '2021-08-06 17:21:59',
-      updatedAt: '2021-08-06 17:21:59',
-      status: 1,
-    },
-    {
-      id: 8,
-      code: 'OPA1',
-      content: 'Opal Skyview',
-      group: 'Hoá học',
-      createdAt: '2021-08-06 17:21:59',
-      updatedAt: '2021-08-06 17:21:59',
-      status: 1,
-    },
-    {
-      id: 9,
-      code: 'OPA1',
-      content: 'Opal Skyview',
-      group: 'Hoá học',
-      createdAt: '2021-08-06 17:21:59',
-      updatedAt: '2021-08-06 17:21:59',
-      status: 1,
-    },
-    {
-      id: 10,
-      code: 'OPA1',
-      content: 'Opal Skyview',
-      group: 'Hoá học',
-      createdAt: '2021-08-06 17:21:59',
-      updatedAt: '2021-08-06 17:21:59',
-      status: 1,
-    },
-  ];
+  });
+
+  const handleEditQuestion = (value: number) => {
+    setQuestionSelectedId(value);
+    setIsModalAddQuestionVisible(true);
+  };
+
+  const handleAddQuestion = () => {
+    setQuestionSelectedId(undefined);
+    setIsModalAddQuestionVisible(true);
+  };
+
+  const handleSubmitModalDelete = useCallback(() => {
+    setIsLoadingDelete(true);
+    deletePost({
+      id: deleteQuestionId,
+    });
+  }, [deleteQuestionId, deletePost]);
+
+  const handleCancelModalDelete = () => {
+    setIsModalDeleteVisible(false);
+  };
+
+  const handleDeleteQuestion = useCallback((id: number) => {
+    if (id) {
+      setDeleteQuestionId(id);
+      setIsModalDeleteVisible(true);
+    }
+  }, []);
 
   const dataSource: IDataColumnTableQuestion[] | undefined = useMemo(() => {
-    return listQuestion.map((question: QuestionInterface, index: number) => ({
+    return listQuestion?.map((question: any, index: number) => ({
       key: index + 1 + (filter.page - 1) * 10,
       id: index + 1 + (filter.page - 1) * 10,
       code: question.code,
       content: question.content,
-      group: question.content,
+      group: question?.questionGroup?.name,
       createdAt: dayjs(question.createdAt).format('YYYY/MM/DD'),
       updatedAt: dayjs(question.updatedAt).format('YYYY/MM/DD'),
       status: (
@@ -163,18 +131,22 @@ export default function MyQuestion() {
           <img
             height={24}
             width={24}
-            src={question.status === QUESTION_STATUS.ACTIVE ? iconActive : iconInactive}
+            src={question?.status?.id === QUESTION_STATUS.ACTIVE ? iconActive : iconInactive}
             alt="More"
           />{' '}
-          {question.status === QUESTION_STATUS.ACTIVE ? t('myQuestion.active') : t('myQuestion.inactive')}
+          {question?.status?.name}
         </div>
       ),
       handle: (
         <Popover
           content={
             <div className={styles.popoverMore}>
-              <p className={styles.popoverEdit}>{t('common.edit')}</p>
-              <p className={styles.popoverDelete}>{t('common.delete')}</p>
+              <p className={styles.popoverEdit} onClick={() => handleEditQuestion(question.id)}>
+                {t('common.edit')}
+              </p>
+              <p className={styles.popoverDelete} onClick={() => handleDeleteQuestion(question.id)}>
+                {t('common.delete')}
+              </p>
             </div>
           }
         >
@@ -182,6 +154,7 @@ export default function MyQuestion() {
         </Popover>
       ),
     }));
+    // eslint-disable-next-line
   }, [listQuestion, filter, t]);
 
   const columns: IColumnTable[] = [
@@ -245,27 +218,24 @@ export default function MyQuestion() {
     [filter]
   );
 
-  const handleChangeCategory = useCallback(
+  const handleChangeGroup = useCallback(
     (selectedValue: number) => {
       setFilter({
         ...filter,
         page: 1,
-        category: selectedValue,
+        group: selectedValue,
       });
     },
     [filter]
   );
 
-  const handleChangeKeyWord = useCallback(
-    (value: string) => {
-      setFilter({
-        ...filter,
-        page: 1,
-        keyWord: value,
-      });
-    },
-    [filter]
-  );
+  const handleChangeKeyWord = useCallback(() => {
+    setFilter({
+      ...filter,
+      page: 1,
+      keyWord: inputFind,
+    });
+  }, [filter, inputFind]);
 
   const handleChangePage = useCallback(
     (page: number) => {
@@ -274,13 +244,19 @@ export default function MyQuestion() {
     [filter]
   );
 
-  const optionSelectCategory = useMemo(() => {
-    return listCategory.map((category: CategoryInterface) => (
-      <Option key={'category' + category.id} value={category.id} selected={category.id === filter.category}>
-        {category.name}
+  useEffect(() => {
+    if (isFetching) return;
+    const profileResponse: any = queryClient.getQueryData([GET_CUSTOMER_PROFILE, isAuthenticated]);
+    setProfile(profileResponse);
+  }, [isFetching, queryClient, isAuthenticated]);
+
+  const optionSelectGroup = useMemo(() => {
+    return listGroup?.map((group: GroupQuestionInterface) => (
+      <Option key={'group' + group.id} value={group.id}>
+        {group.name}
       </Option>
     ));
-  }, [filter.category, listCategory]);
+  }, [listGroup]);
 
   return (
     <div className={styles.myQuestion}>
@@ -297,6 +273,7 @@ export default function MyQuestion() {
               className={styles.select}
               bordered={false}
               onChange={handleChangeStatus}
+              allowClear
             >
               <Option
                 value={QUESTION_STATUS.ACTIVE}
@@ -314,31 +291,27 @@ export default function MyQuestion() {
               </Option>
             </Select>
             <Select
-              value={filter.category}
+              value={filter.group}
               className={styles.select}
               bordered={false}
-              onChange={handleChangeCategory}
-              loading={isLoadingListCategory}
-              placeholder={t('myQuestion.category')}
+              onChange={handleChangeGroup}
+              loading={isLoadingListGroup}
+              placeholder={t('myQuestion.group')}
+              allowClear
             >
-              {optionSelectCategory}
+              {optionSelectGroup}
             </Select>
             <Input
               className={styles.input}
               prefix={<img src={iconSearch} alt="search" />}
-              placeholder={t('common.find')}
-              value={filter.keyWord}
-              onChange={(e) => handleChangeKeyWord(e.currentTarget.value)}
+              placeholder={t('myQuestion.find')}
+              value={inputFind}
+              onChange={(e) => setInputFind(e.currentTarget.value)}
+              onBlur={handleChangeKeyWord}
             />
           </Col>
           <Col xs={24} sm={24} md={8} lg={8} xl={8} className={styles.colBtn}>
-            <Button
-              block
-              type="primary"
-              htmlType="button"
-              className={styles.btnAdd}
-              onClick={() => setIsModalAddQuestionVisible(true)}
-            >
+            <Button block type="primary" htmlType="button" className={styles.btnAdd} onClick={handleAddQuestion}>
               {t('common.addNew').toUpperCase()} <img height={16} width={16} src={iconAdd} alt="Add" />
             </Button>
           </Col>
@@ -351,7 +324,7 @@ export default function MyQuestion() {
           dataSource={dataSource}
           columns={columns}
           pagination={false}
-          scroll={{ x: !!dataSource.length ? true : undefined }}
+          scroll={{ x: !!dataSource?.length ? true : undefined }}
           rowClassName={(record, index) => (index % 2 ? '' : 'hasBackground')}
           locale={{ emptyText: t('common.noData') }}
         />
@@ -360,16 +333,15 @@ export default function MyQuestion() {
       {!isLoadingQuestion && (
         <Col span={24} className={styles.colPagination}>
           <Col xs={24} sm={24} md={12} lg={12} xl={12} className={styles.textPagination}>
-            <strong>
-              {t('myQuestion.showCount', {
-                total: 100,
-                from: 1,
-                to: 10,
-              })}
-            </strong>
+            <strong>Tổng số lượng: {countQuestions}</strong>
           </Col>
           <Col xs={24} sm={24} md={12} lg={12} xl={12} className={styles.pagination}>
-            <Pagination onChange={handleChangePage} total={100} current={filter.page} pageSize={filter.per_page} />
+            <Pagination
+              onChange={handleChangePage}
+              total={countQuestions}
+              current={filter.page}
+              pageSize={filter.per_page}
+            />
           </Col>
         </Col>
       )}
@@ -381,7 +353,35 @@ export default function MyQuestion() {
         centered={true}
         footer={false}
       >
-        <CommonQuestionForm />
+        <CommonQuestionForm
+          hideQuestionForm={() => setIsModalAddQuestionVisible(false)}
+          questionSelectedId={questionSelectedId}
+        />
+      </Modal>
+      <Modal
+        className={styles.modalYesNo}
+        visible={isModalDeleteVisible}
+        closable={false}
+        centered={true}
+        footer={false}
+      >
+        <div className={styles.title}>
+          <strong>Bạn có muốn xóa câu hỏi này không?</strong>
+        </div>
+        <div className={styles.button}>
+          <Button type="primary" htmlType="button" onClick={handleCancelModalDelete} className={styles.buttonCancel}>
+            {t('common.btnCancel')}
+          </Button>
+          <Button
+            type="primary"
+            htmlType="button"
+            onClick={handleSubmitModalDelete}
+            className={styles.buttonOk}
+            loading={isLoadingDelete}
+          >
+            {t('common.btnOk')}
+          </Button>
+        </div>
       </Modal>
     </div>
   );

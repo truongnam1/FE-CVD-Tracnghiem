@@ -1,0 +1,192 @@
+.examAction {
+    position: relative;
+    margin-right: 10px;
+    .title {
+        padding: 10px 20px 0px 20px;
+        display: flex;
+        align-items: flex-start;
+        h2 {
+            font-style: normal;
+            font-weight: 400;
+            font-size: 32px;
+            white-space: pre-line;
+            word-break: break-all;
+            text-align: left;
+        }
+    }
+    .formExam {
+        .formAddExam {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-direction: column;
+            .listExamQuestion {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                width: 100%;
+                padding: 0 20px;
+            }
+        }
+        .formInfoExam {
+            background-color: white;
+            border-radius: 10px;
+            padding-bottom: 20px;
+            box-shadow: 0 5px 30px RGB(0 22 84 / 10%);
+            -webkit-box-shadow: 0 5px 30px RGB(0 22 84 / 10%);
+            position: fixed;
+            right: 2%;
+            width: 30%;
+            text-align: center;
+            .rowUploadAvatar {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                .avatar {
+                    width: 100%;
+                    height: 200px;
+                    border-radius: 10px 10px 0 0;
+                    object-fit: cover;
+                }
+            }
+            .infoExam {
+                width: 100%;
+                padding: 10px 20px;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                .nameExam {
+                    font-size: 20px;
+                    font-weight: 700;
+                    white-space: pre-line;
+                    word-break: break-all;
+                    text-align: left;
+                }
+                .infoMore {
+                    padding: 10px 0;
+                    .countInfo {
+                        margin-bottom: 20px;
+                        font-size: 16px;
+                        text-align: left;
+                        .icon {
+                            height: 24px;
+                            width: 24px;
+                            margin-right: 10px;
+                        }
+                    }
+                }
+            }
+            .btnSubmit {
+                width: 50%;
+                border-radius: 10px;
+                font-weight: 700;
+                padding: 12px 0;
+                height: auto;
+            }
+            .listQuestionNumber {
+                padding: 10px 20px;
+                .questionNumber {
+                    width: 40px;
+                    height: 40px;
+                    line-height: 40px;
+                    border-radius: 3px;
+                    text-align: center;
+                    cursor: pointer;
+                    font-weight: bold;
+                    font-size: 16px;
+                    color: #67758D;
+                    background: #F6F9FC;
+                    display: flex;
+                    margin-right: 10px;
+                    margin-bottom: 10px;
+                    align-items: center;
+                    justify-content: center;
+                }
+                .questionNumberActive {
+                    font-size: 20px;
+                    border: 2px solid #67758D;
+                }
+            }
+        }
+    }
+}
+
+.modalSuccess {
+    width: 450px !important;
+     :global(.ant-modal-body) {
+        text-align: center;
+        padding: 30px;
+        font-size: 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        .title {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        .button {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+            .buttonCancel,
+            .buttonOk {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                padding: 16px;
+                border-radius: 10px;
+                height: 45px;
+                width: 40%;
+                font-weight: 700;
+                &:hover {
+                    -ms-transform: scale(1.05);
+                    -webkit-transform: scale(1.05);
+                    transform: scale(1.05);
+                }
+            }
+            .buttonOk {
+                background-color: #7a6a56;
+                border-color: #7a6a56;
+                color: white;
+            }
+            .buttonCancel {
+                background-color: white;
+                border-color: #7a6a56;
+                color: #7a6a56;
+            }
+        }
+    }
+     :global(.ant-modal-content) {
+        border-radius: 15px;
+        z-index: 1 !important;
+    }
+     :global(.ant-modal-footer) {
+        border: none;
+        padding: 0px 16px 30px 16px;
+        display: flex;
+        justify-content: space-around;
+         :global {
+            .ant-btn-default,
+            .ant-btn-primary {}
+        }
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .examAction {
+        margin: 0;
+        .title {
+            padding: 10px 15px 0px 15px;
+            h2 {
+                margin-bottom: 24px;
+            }
+        }
+    }
+}

@@ -6,5 +6,5 @@ import { TOKEN_CUSTOMER } from 'contants/constants';
 export default function PrivateRoute() {
   const isAuthenticated = !!Cookies.get(TOKEN_CUSTOMER);
 
-  return true ? <Outlet /> : <Navigate to="/" />;
+  return isAuthenticated ? <Outlet /> : <Navigate to="/" />;
 }

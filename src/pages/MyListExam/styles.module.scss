@@ -1,285 +1,352 @@
 .myListExam {
-  position: relative;
-  margin-left: 84px;
-  .title {
-    padding: 10px 20px 0px 20px;
-    display: flex;
-    align-items: flex-start;
-    h2 {
-      font-style: normal;
-      font-weight: 400;
-      font-size: 32px;
+    position: relative;
+    margin-left: 84px;
+    .title {
+        padding: 10px 20px 0px 20px;
+        display: flex;
+        align-items: flex-start;
+        h2 {
+            font-style: normal;
+            font-weight: 400;
+            font-size: 32px;
+        }
     }
-  }
-  .select {
-    border: 1px solid #d6d6d6;
-    box-sizing: border-box;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 45px;
-    background-color: white;
-  }
-  .input {
-    border: 1px solid #d6d6d6;
-    box-sizing: border-box;
-    border-radius: 5px;
-    padding: 12px 10px;
-    height: 45px;
-    background-color: white;
-  }
-  .colFilterAdd {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    .colFilter {
-      display: flex;
-      justify-content: flex-start;
-      .select {
-        width: 30%;
-        margin-right: 10px;
-      }
-      .input {
-        width: 30%;
-      }
+    .select {
+        border: 1px solid #d6d6d6;
+        box-sizing: border-box;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 45px;
+        background-color: white;
     }
-    .colBtn {
-      display: flex;
-      justify-content: flex-end;
-      .btnAdd {
+    .input {
+        border: 1px solid #d6d6d6;
+        box-sizing: border-box;
+        border-radius: 5px;
+        padding: 12px 10px;
+        height: 45px;
+        background-color: white;
+    }
+    .colFilterAdd {
         display: flex;
         justify-content: space-around;
         align-items: center;
-        background-color: #0f62fe;
-        border-color: #0f62fe;
-        width: 150px;
-        box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px rgba(0, 0, 0, 0.14),
-          0px 1px 5px rgba(0, 0, 0, 0.12);
-        border-radius: 5px;
-        padding: 8px 0;
-        height: auto;
-      }
+        .colFilter {
+            display: flex;
+            justify-content: flex-start;
+            .select {
+                width: 30%;
+                margin-right: 10px;
+            }
+            .input {
+                width: 30%;
+                margin-right: 10px;
+            }
+        }
+        .colBtn {
+            display: flex;
+            justify-content: flex-end;
+            .btnAdd {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                background-color: #0f62fe;
+                border-color: #0f62fe;
+                width: 150px;
+                box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px rgba(0, 0, 0, 0.14), 0px 1px 5px rgba(0, 0, 0, 0.12);
+                border-radius: 5px;
+                padding: 8px 0;
+                height: auto;
+            }
+        }
     }
-  }
-  .table {
-    padding: 10px 20px 10px 20px;
-    .indexColumn,
-    .codeColumn,
-    .contentColumn,
-    .groupColumn,
-    .createdAtColumn,
-    .updatedAtColumn,
-    .statusColumn,
-    .handleColumn {
-      background: none;
-      word-break: break-all;
-      &::before {
-        width: 0px !important;
-      }
+    .table {
+        padding: 10px 20px 10px 20px;
+        .indexColumn,
+        .codeColumn,
+        .contentColumn,
+        .groupColumn,
+        .createdAtColumn,
+        .updatedAtColumn,
+        .statusColumn,
+        .handleColumn {
+            background: none;
+            word-break: break-all;
+            &::before {
+                width: 0px !important;
+            }
+        }
+        .indexColumn,
+        .handleColumn {
+            max-width: 5%;
+            width: 5%;
+        }
+        .statusColumn {
+            max-width: 15%;
+            width: 15%;
+        }
+        .codeColumn,
+        .createdAtColumn,
+        .updatedAtColumn {
+            max-width: 10%;
+            width: 10%;
+        }
+        .groupColumn {
+            max-width: 10%;
+            width: 10%;
+        }
+        .contentColumn {
+            max-width: 25%;
+            width: 25%;
+        }
+        .contentColumn {
+            white-space: nowrap;
+            max-width: 350px;
+            width: 350px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            background: none;
+            &::before {
+                width: 0px !important;
+            }
+        }
+        .statusColumn {
+            .divStatus {
+                display: flex;
+            }
+        }
+         :global {
+            .ant-table {
+                border-radius: 10px;
+            }
+            .hasBackground {
+                background-color: #f6f6f6;
+                border: 0.5px solid #d6d6d6;
+            }
+            .ant-table-content {
+                border-radius: 10px;
+                border: 0.5px solid #d6d6d6;
+            }
+            .ant-table-container table>tbody>tr:last-child td:first-child {
+                border-bottom-left-radius: 10px;
+            }
+            .ant-table-container table>tbody>tr:last-child td:last-child {
+                border-bottom-right-radius: 10px;
+            }
+        }
     }
-    .indexColumn,
-    .handleColumn {
-      max-width: 5%;
-      width: 5%;
-    }
-    .statusColumn {
-      max-width: 15%;
-      width: 15%;
-    }
-    .codeColumn,
-    .createdAtColumn,
-    .updatedAtColumn {
-      max-width: 10%;
-      width: 10%;
-    }
-    .groupColumn {
-      max-width: 20%;
-      width: 20%;
-    }
-    .contentColumn {
-      max-width: 25%;
-      width: 25%;
-    }
-    .contentColumn {
-      white-space: nowrap;
-      max-width: 350px;
-      width: 350px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      background: none;
-      &::before {
-        width: 0px !important;
-      }
-    }
-    .statusColumn {
-      .divStatus {
+    .colPagination {
+        padding: 20px 30px 20px 20px;
         display: flex;
-      }
+        justify-content: space-between;
+        align-items: center;
+         :global {
+            .ant-pagination {
+                display: flex;
+                justify-content: flex-end;
+                .ant-pagination-jump-next,
+                .ant-pagination-jump-prev {
+                    width: 40px;
+                    height: 40px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 10px !important;
+                    background-color: #f6f6f6 !important;
+                    .ant-pagination-item-link-icon {
+                        color: gray;
+                    }
+                    .ant-pagination-item-ellipsis {
+                        margin: 0 0 0 -5px;
+                    }
+                }
+                .ant-pagination-item,
+                .ant-pagination-next,
+                .ant-pagination-prev {
+                    height: 40px;
+                    width: 40px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-weight: 700;
+                    border-radius: 10px !important;
+                    .ant-pagination-item-link {
+                        border-radius: 10px !important;
+                    }
+                }
+                .ant-pagination-item {
+                    border: 1px solid #d6d6d6;
+                }
+                button:not([disabled]) {
+                    border-radius: 10px !important;
+                    color: black;
+                }
+                li:hover,
+                .ant-pagination-item-active {
+                    background-color: #7a6a56;
+                    border-color: #7a6a56;
+                }
+                li a:hover,
+                .ant-pagination-item-active a,
+                .ant-pagination-item:hover a {
+                    color: white;
+                }
+                button:hover:not([disabled]) {
+                    background-color: #7a6a56;
+                    border-color: #7a6a56;
+                    color: white !important;
+                    border-radius: 10px !important;
+                }
+                .ant-pagination-options {
+                    display: none;
+                }
+            }
+        }
     }
-    :global {
-      .ant-table {
-        border-radius: 10px;
-      }
-      .hasBackground {
-        background-color: #f6f6f6;
-        border: 0.5px solid #d6d6d6;
-      }
-      .ant-table-content {
-        border-radius: 10px;
-        border: 0.5px solid #d6d6d6;
-      }
-      .ant-table-container table > tbody > tr:last-child td:first-child {
-        border-bottom-left-radius: 10px;
-      }
-      .ant-table-container table > tbody > tr:last-child td:last-child {
-        border-bottom-right-radius: 10px;
-      }
-    }
-  }
-  .colPagination {
-    padding: 20px 30px 20px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    :global {
-      .ant-pagination {
-        display: flex;
-        justify-content: flex-end;
-        .ant-pagination-jump-next,
-        .ant-pagination-jump-prev {
-          width: 40px;
-          height: 40px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          border-radius: 10px !important;
-          background-color: #f6f6f6 !important;
-          .ant-pagination-item-link-icon {
-            color: gray;
-          }
-          .ant-pagination-item-ellipsis {
-            margin: 0 0 0 -5px;
-          }
-        }
-        .ant-pagination-item,
-        .ant-pagination-next,
-        .ant-pagination-prev {
-          height: 40px;
-          width: 40px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          font-weight: 700;
-          border-radius: 10px !important;
-          .ant-pagination-item-link {
-            border-radius: 10px !important;
-          }
-        }
-        .ant-pagination-item {
-          border: 1px solid #d6d6d6;
-        }
-        button:not([disabled]) {
-          border-radius: 10px !important;
-          color: black;
-        }
-        li:hover,
-        .ant-pagination-item-active {
-          background-color: #7a6a56;
-          border-color: #7a6a56;
-        }
-        li a:hover,
-        .ant-pagination-item-active a,
-        .ant-pagination-item:hover a {
-          color: white;
-        }
-        button:hover:not([disabled]) {
-          background-color: #7a6a56;
-          border-color: #7a6a56;
-          color: white !important;
-          border-radius: 10px !important;
-        }
-        .ant-pagination-options {
-          display: none;
-        }
-      }
-    }
-  }
 }
 
 .popoverMore {
-  width: 100px;
-  p {
-    cursor: pointer;
-    padding: 5px;
-  }
-  .popoverDelete:hover {
-    background-color: #f5a89a;
-  }
-  .popoverEdit:hover {
-    background-color: #cbe6ff;
-  }
+    width: 100px;
+    p {
+        cursor: pointer;
+        padding: 5px;
+    }
+    .popoverDelete:hover {
+        background-color: #f5a89a;
+    }
+    .popoverEdit:hover {
+        background-color: #cbe6ff;
+    }
+}
+
+.modalYesNo {
+    width: 450px !important;
+     :global(.ant-modal-body) {
+        text-align: center;
+        padding: 30px;
+        font-size: 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        .title {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        .button {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+            .buttonCancel,
+            .buttonOk {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                padding: 16px;
+                border-radius: 10px;
+                height: 45px;
+                width: 40%;
+                font-weight: 700;
+                &:hover {
+                    -ms-transform: scale(1.05);
+                    -webkit-transform: scale(1.05);
+                    transform: scale(1.05);
+                }
+            }
+            .buttonOk {
+                background-color: #7a6a56;
+                border-color: #7a6a56;
+                color: white;
+            }
+            .buttonCancel {
+                background-color: white;
+                border-color: #7a6a56;
+                color: #7a6a56;
+            }
+        }
+    }
+     :global(.ant-modal-content) {
+        border-radius: 15px;
+        z-index: 1 !important;
+    }
+     :global(.ant-modal-footer) {
+        border: none;
+        padding: 0px 16px 30px 16px;
+        display: flex;
+        justify-content: space-around;
+         :global {
+            .ant-btn-default,
+            .ant-btn-primary {}
+        }
+    }
 }
 
 @media only screen and (max-width: 1024px) {
-  .questionPage {
-    .table {
-      overflow: scroll;
-      .indexColumn,
-      .totalProductColumn,
-      .codeColumn,
-      .orderDateColumn,
-      .totalPaymentColumn,
-      .statusColumn,
-      .handleColumn {
-        white-space: nowrap;
-      }
+    .questionPage {
+        .table {
+            overflow: scroll;
+            .indexColumn,
+            .totalProductColumn,
+            .codeColumn,
+            .orderDateColumn,
+            .totalPaymentColumn,
+            .statusColumn,
+            .handleColumn {
+                white-space: nowrap;
+            }
+        }
     }
-  }
 }
 
 @media only screen and (max-width: 767px) {
-  .questionPage {
-    margin: 0;
-    .title {
-      padding: 10px 15px 0px 15px;
-      h2 {
-        margin-bottom: 24px;
-      }
-    }
-    .colFilter {
-      .formFillter {
-        flex-direction: column;
-        .colFilterDate {
-          margin: 10px 0 10px 0;
-          .dateStart {
-            margin-left: 0px;
-          }
+    .questionPage {
+        margin: 0;
+        .title {
+            padding: 10px 15px 0px 15px;
+            h2 {
+                margin-bottom: 24px;
+            }
         }
-      }
+        .colFilter {
+            .formFillter {
+                flex-direction: column;
+                .colFilterDate {
+                    margin: 10px 0 10px 0;
+                    .dateStart {
+                        margin-left: 0px;
+                    }
+                }
+            }
+        }
+        .table {
+            padding: 10px 15px 10px 15px;
+            overflow: scroll;
+            .indexColumn,
+            .totalProductColumn,
+            .codeColumn,
+            .orderDateColumn,
+            .totalPaymentColumn,
+            .statusColumn,
+            .handleColumn {
+                white-space: nowrap;
+            }
+        }
+        .colPagination {
+            padding: 20px 15px 20px 15px;
+            align-items: normal;
+            flex-direction: column;
+            .pagination {
+                margin: 30px 0;
+                display: flex;
+                justify-content: center;
+            }
+        }
     }
-    .table {
-      padding: 10px 15px 10px 15px;
-      overflow: scroll;
-      .indexColumn,
-      .totalProductColumn,
-      .codeColumn,
-      .orderDateColumn,
-      .totalPaymentColumn,
-      .statusColumn,
-      .handleColumn {
-        white-space: nowrap;
-      }
-    }
-    .colPagination {
-      padding: 20px 15px 20px 15px;
-      align-items: normal;
-      flex-direction: column;
-      .pagination {
-        margin: 30px 0;
-        display: flex;
-        justify-content: center;
-      }
-    }
-  }
 }
